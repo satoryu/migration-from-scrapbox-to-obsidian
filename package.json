@@ -2,8 +2,9 @@
   "name": "migration-from-scrapbox-to-obsidian",
   "version": "1.0.0",
   "description": "A tool for migrating all pages from Scrapbox to Obsidian",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "build": "tsc -b",
     "test": "jest"
   },
   "author": "",
