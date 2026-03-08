@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "A tool for migrating all pages from Scrapbox to Obsidian",
   "main": "dist/index.js",
+  "bin": {
+    "scrapbox2obsidian": "dist/cli.js"
+  },
   "scripts": {
     "build": "tsc -b",
     "watch": "tsc -w",
-    "test": "jest"
+    "test": "jest",
+    "start": "node dist/cli.js"
   },
   "author": "",
   "license": "ISC",
