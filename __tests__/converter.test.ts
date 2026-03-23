@@ -49,6 +49,14 @@ describe('convert', () => {
     test('bare external link [url] converts to url', () => {
       expect(convert('[https://example.com]')).toBe('https://example.com')
     })
+
+    test('internal link with date path replaces slashes with hyphens', () => {
+      expect(convert('[2026/3/23]')).toBe('[[2026-3-23]]')
+    })
+
+    test('internal link with date and surrounding text', () => {
+      expect(convert('See [2026/3/23] for details')).toBe('See [[2026-3-23]] for details')
+    })
   })
 
   describe('hashtags', () => {

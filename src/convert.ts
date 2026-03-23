@@ -5,6 +5,7 @@ import type { Line } from '@progfay/scrapbox-parser/lib/block/Line'
 import type { CodeBlock } from '@progfay/scrapbox-parser/lib/block/CodeBlock'
 import type { Table } from '@progfay/scrapbox-parser/lib/block/Table'
 import type { Node, DecorationNode } from '@progfay/scrapbox-parser/lib/block/node/type'
+import { replaceDateSlashes } from './sanitize'
 
 export function convert(text: string): string {
   const blocks = parse(text, { hasTitle: false })
@@ -130,7 +131,7 @@ function convertDecoration(node: DecorationNode): string {
 
 function convertLink(node: { type: 'link'; pathType: string; href: string; content: string }): string {
   if (node.pathType === 'relative') {
-    return `[[${node.href}]]`
+    return `[[${replaceDateSlashes(node.href)}]]`
   }
   if (node.content) {
     return `[${node.content}](${node.href})`
