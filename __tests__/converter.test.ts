@@ -60,8 +60,24 @@ describe('convert', () => {
   })
 
   describe('hashtags', () => {
-    test('#tag is preserved as #tag', () => {
-      expect(convert('#tag')).toBe('#tag')
+    test('#tag is converted to [[tag]]', () => {
+      expect(convert('#tag')).toBe('[[tag]]')
+    })
+
+    test('#tag with Japanese characters converts to internal link', () => {
+      expect(convert('#日本語')).toBe('[[日本語]]')
+    })
+
+    test('multiple hashtags on a line are each converted to internal links', () => {
+      expect(convert('#foo #bar')).toBe('[[foo]] [[bar]]')
+    })
+
+    test('hashtag with surrounding text', () => {
+      expect(convert('Hello #world end')).toBe('Hello [[world]] end')
+    })
+
+    test('hashtag with date-like value applies date slash replacement', () => {
+      expect(convert('#2026/3/23')).toBe('[[2026-3-23]]')
     })
   })
 
