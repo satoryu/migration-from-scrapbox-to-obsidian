@@ -95,7 +95,7 @@ function convertNode(node: Node): string {
     case 'link':
       return convertLink(node)
     case 'hashTag':
-      return `#${node.href}`
+      return `[[${replaceDateSlashes(node.href)}]]`
     case 'code':
       return `\`${node.text}\``
     case 'quote':
